@@ -1,0 +1,62 @@
+body {
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  perspective: 800px; /* profundidad 3D */
+}
+
+/* Círculo exterior */
+.circle-1 {
+  position: relative;
+  height: 250px;
+  width: 250px;
+  border: 6px solid cyan;
+  border-radius: 50%;
+  box-shadow: 0 0 25px cyan, inset 0 0 25px cyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* 🔥 el rombo no puede salirse */
+  animation: glow 3s ease-in-out infinite alternate;
+  transform-style: preserve-3d;
+}
+
+/* Rombo completamente dentro del círculo */
+.circle-2 {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, cyan, magenta);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  box-shadow: 0 0 20px cyan, 0 0 40px magenta;
+  transform-style: preserve-3d;
+  animation: spin3D 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  position: absolute;
+  z-index: 0;
+}
+
+/* Animación 3D dentro del círculo */
+@keyframes spin3D {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(30deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+
+/* Brillo del círculo */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 15px cyan, inset 0 0 10px cyan;
+  }
+  100% {
+    box-shadow: 0 0 50px magenta, inset 0 0 25px cyan;
+  }
+}
